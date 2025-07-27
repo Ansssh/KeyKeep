@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend Folder for Password Generator and Manager App By Ansh!",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "author": "Ansh",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+# Logs
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+
+# Environment variables
+# Never commit this file! It contains secrets.
+.env
+
+# Production build folder (if you have one later)
+/dist
+/build
+
+# IDE / Editor folders
+.vscode/
+.idea/
