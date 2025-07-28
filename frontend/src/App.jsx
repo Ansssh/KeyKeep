@@ -7,11 +7,15 @@ function App() {
 
     return (
         <>
-            <BrowserRouter>
-                <Routes>
-                    <Route index element={<Home />}></Route>
-                </Routes>
-            </BrowserRouter>
+            <div className='flex flex-col h-screen'>
+                <BrowserRouter>
+                    <div className='flex flex-1'>
+                        <Routes>
+                            <Route index element={<Home />}></Route>
+                        </Routes>
+                    </div>
+                </BrowserRouter>
+            </div>
         </>
     )
 }
