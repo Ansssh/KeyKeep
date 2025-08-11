@@ -21,5 +21,33 @@
 
 *{
     box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
+}
+@utility smxx{
+    transition: all 300ms ease-in-out;
+}
+
+@utility slash {
+  /* Set the dash pattern to the full length of the line */
+  stroke-dasharray: 29;
+
+  /* The line is initially visible (like h-5) */
+  stroke-dashoffset: 0;
+
+  /* Animate the change over 250ms */
+  transition-property: stroke-dashoffset;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+}
+
+@utility slashii {
+  /* Set the dash pattern to the full length of the line */
+  stroke-dasharray: 29;
+
+  /* The line is initially hidden (like h-0) */
+  stroke-dashoffset: 29;
+
+  /* Animate the change over 250ms */
+  transition-property: stroke-dashoffset;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
 }
