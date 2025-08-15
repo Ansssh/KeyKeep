@@ -72,7 +72,7 @@ const Login = () => {
                     <input
                         id="password"
                         type={isPasswordVisible ? "text" : "password"}
-                        value={passwordValue} // CHANGE: Fixed bug, was commented out
+                        value={passwordValue}
                         className={`w-full h-12 text-xl items-center px-4 py-2 border-2 rounded-lg ${theme === "light" ? "border-main text-main focus:border-i" : "border-vv text-vv focus:border-v"} bg-transparent outline-none box-border`}
                         onFocus={() => setIsPasswordFocused(true)}
                         onBlur={() => setIsPasswordFocused(false)}
@@ -94,13 +94,6 @@ const Login = () => {
                             />
                         </svg>
                     </div>
-                </div>
-                <div className='flex items-center gap-1'>
-                    <input
-                        type="checkbox"
-                        id="checkBox"
-                        className={`ml-2 ${theme === "light" ? "text-main" : "text-vv"} cursor-pointer`} />
-                    <label htmlFor="checkBox" className={`smxx font-semibold text-sm -mt-[2px] ${theme === "light" ? "text-main" : "text-vv"}`}>Remember Me</label>
                 </div>
 
                 <button

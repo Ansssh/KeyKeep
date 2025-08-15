@@ -19,7 +19,7 @@ const Home = () => {
             <h2 className={`text-center font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-10 sm:mt-12 md:14 lg:mt-16 smxx ${theme === "dark" ? "text-vv" : "text-main"} `}>Go Ahead. Forget your <span className='font-shadows'>passwords!</span></h2>
             <p className={`text-center font-light text-base sm:text-lg md:text-xl lg:text-2xl self-center w-70 xs:w-100 sm:w-140 md:w-160 mt-3 sm:mt-4 md:mt-5 lg:mt-6 smxx ${theme === "dark" ? "text-vv" : "text-main"} `}>KeyKeep remembers all of them for you. Save all your passwords and login into sites with a single click. Its that simple!</p>
 
-            <Link to={"/login"} className={`flex w-fit self-center items-center justify-center ${theme === "dark" ? "bg-vv text-main" : "bg-main text-ii"} rounded-full py-2 px-5 gap-1 my-4 sm:my-5 md:my-6 lg:my-7 text-xs sm:text-base md:text-lg lg:text-xl font-bold cursor-pointer active:scale-95 transition-all duration-200 ease-in-out`}>
+            <Link to={"/signup"} className={`flex w-fit self-center items-center justify-center ${theme === "dark" ? "bg-vv text-main" : "bg-main text-ii"} rounded-full py-2 px-5 gap-1 my-4 sm:my-5 md:my-6 lg:my-7 text-xs sm:text-base md:text-lg lg:text-xl font-bold cursor-pointer active:scale-95 transition-all duration-200 ease-in-out`}>
                 Get Started
                 <i className="ri-arrow-right-long-line"></i>
             </Link>

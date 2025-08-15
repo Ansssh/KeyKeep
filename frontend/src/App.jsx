@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import UserHome from './pages/UserHome';
 
 
@@ -20,6 +21,7 @@ function App() {
                                 <Route element={<Layout />}>
                                     <Route path='/' element={<Home />}></Route>
                                     <Route path='login' element={<Login />}></Route>
+                                    <Route path='signup' element={<Signup />}></Route>
                                 </Route>
                             </Routes>
                         </div>
