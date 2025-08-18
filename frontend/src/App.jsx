@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
+import { UserProvider } from './context/userContext';
 
 import Layout from './pages/Layout';
 import Home from './pages/Home';
@@ -14,19 +15,22 @@ function App() {
     return (
         <>
             <ThemeProvider>
-                <div className='flex flex-col h-screen'>
-                    <BrowserRouter>
-                        <div className='flex flex-1'>
-                            <Routes>
-                                <Route element={<Layout />}>
-                                    <Route path='/' element={<Home />}></Route>
-                                    <Route path='login' element={<Login />}></Route>
-                                    <Route path='signup' element={<Signup />}></Route>
-                                </Route>
-                            </Routes>
-                        </div>
-                    </BrowserRouter>
-                </div>
+                <UserProvider>
+                    <div className='flex flex-col h-screen'>
+                        <BrowserRouter>
+                            <div className='flex flex-1'>
+                                <Routes>
+                                    <Route element={<Layout />}>
+                                        <Route path='' element={<Home />}></Route>
+                                        <Route path='login' element={<Login />}></Route>
+                                        <Route path='signup' element={<Signup />}></Route>
+                                        <Route path='home' element={<UserHome />}></Route>
+                                    </Route>
+                                </Routes>
+                            </div>
+                        </BrowserRouter>
+                    </div>
+                </UserProvider>
             </ThemeProvider>
         </>
     )

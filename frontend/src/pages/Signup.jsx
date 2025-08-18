@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import { UserContext } from '../context/userContext';
 import { motion } from 'framer-motion';
 import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Signup = () => {
     const { theme } = useContext(ThemeContext);
+    const { user, login } = useContext(UserContext);
     const Navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({
@@ -35,6 +38,24 @@ const Signup = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const [step, setStep] = useState(1);
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const { name, userName, password } = credentials;
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/signup`, {
+            fullName: name,
+            user_name: userName,
+            pass_word: password
+        }).then((res) => {
+            console.log(res);
+            console.log(res.status)
+            console.log("Successfully Signed Up!");
+            login(res.data.user);
+            Navigate('/home');
+        }).catch((err) => {
+            console.error("Duck You! No Signup for you!", err);
+        })
+    }
 
     function renderParts() {
         switch (step) {
@@ -186,10 +207,7 @@ const Signup = () => {
 
                             <button
                                 type="submit"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    Navigate("/")
-                                }}
+                                onClick={(e) => handleSubmit(e)}
                                 className={`w-full ${theme === "light" ? " bg-i" : "bg-v"} rounded-lg h-12 font-bold text-lg text-main cursor-pointer active:scale-95 transition-all duration-200 ease-in-out flex items-center justify-center`}>
                                 Sign Up!
                             </button>

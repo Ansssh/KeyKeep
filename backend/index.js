@@ -1,1 +1,25 @@
-console.log("Ansh Kumar");
+import express from 'express';
+import cors from 'cors'
+
+
+const app = express();
+
+
+import { signup } from './controllers/authController.js';
+
+
+app.use(cors())
+app.use(express.json())
+
+const port = process.env.PORT || 5000;
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the Password Manager API!');
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+
+app.post('/signup', signup);
+
