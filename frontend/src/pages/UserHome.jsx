@@ -5,6 +5,8 @@ import axios from 'axios';
 
 const UserHome = () => {
     const navigate = useNavigate();
+    const name = localStorage.getItem("user");
+
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
@@ -20,7 +22,7 @@ const UserHome = () => {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                console.log(response.data.message);
+                console.log("food",response.data.rows);
 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -37,7 +39,7 @@ const UserHome = () => {
 
     return (
         <>
-            <h1>Hello, Welcome!</h1>
+            <h1>Hello, Welcome! {name}</h1>
         </>
     );
 };

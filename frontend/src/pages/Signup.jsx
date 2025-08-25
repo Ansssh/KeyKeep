@@ -46,6 +46,7 @@ const Signup = () => {
             pass_word: password
         }).then((res) => {
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem("user", userName)
             console.log("Successfully Signed Up!");
             Navigate('/home');
         }).catch((err) => {
