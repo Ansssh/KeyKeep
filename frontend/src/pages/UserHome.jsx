@@ -1,12 +1,13 @@
 import React from 'react'
 import { useContext } from 'react';
-import { UserContext } from '../context/userContext';
+import axios from 'axios';
 
 const UserHome = () => {
-  const { user } = useContext(UserContext);
-  return (
-    <div>Hello {user}</div>
-  )
+    
+    return (
+        <>
+        </>
+    )
 }
 
 export default UserHome

@@ -5,7 +5,7 @@ import cors from 'cors'
 const app = express();
 
 
-import { signup } from './controllers/authController.js';
+import { signup, login, users } from './controllers/authController.js';
 
 
 app.use(cors())
@@ -22,4 +22,6 @@ app.listen(port, () => {
 });
 
 app.post('/signup', signup);
+app.post('/login', login);
 
+app.get("/users", users);

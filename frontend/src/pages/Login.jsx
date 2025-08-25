@@ -1,8 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import { UserContext } from '../context/userContext';
 import { motion } from 'framer-motion'; // CHANGE: Imported motion
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const Navigate = useNavigate();
     const { theme } = useContext(ThemeContext);
     const [isNameFocused, setIsNameFocused] = useState(false);
     const [isPasswordFocused, setIsPasswordFocused] = useState(false)
@@ -11,6 +15,24 @@ const Login = () => {
     const isLabelFloating = isNameFocused || nameValue;
     const isPasswordFloating = isPasswordFocused || passwordValue;
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+    const { login } = useContext(UserContext); 
+
+    async function handleLogin(e) {
+        e.preventDefault();
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/login`, {
+            user_name: nameValue,
+            pass_word: passwordValue
+        }).then((res) => {
+            console.log(res);
+            localStorage.setItem('token', res.data.token);
+            console.log("Successfully Logged In!");
+            login(res.data.user);
+            Navigate('/home');
+        }).catch((err) => {
+            console.error("Login failed!", err);
+        })
+    }
 
     return (
         // CHANGE: Wrapped the main div with motion.div for animations
@@ -83,9 +105,9 @@ const Login = () => {
                         : "opacity-0 scale-0 pointer-events-none"
                         } cursor-pointer`} onClick={() => { setIsPasswordVisible(!isPasswordVisible) }}>
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke={theme === "dark" ? "#C1121F" : "#FDF0D5"} className='w-6 h-6'>
-                            <path d="M12 16.01C14.2091 16.01 16 14.2191 16 12.01C16 9.80087 14.2091 8.01001 12 8.01001C9.79086 8.01001 8 9.80087 8 12.01C8 14.2191 9.79086 16.01 12 16.01Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M2 11.98C8.09 1.31996 15.91 1.32996 22 11.98" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M22 12.01C15.91 22.67 8.09 22.66 2 12.01" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12 16.01C14.2091 16.01 16 14.2191 16 12.01C16 9.80087 14.2091 8.01001 12 8.01001C9.79086 8.01001 8 9.80087 8 12.01C8 14.2191 9.79086 16.01 12 16.01Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M2 11.98C8.09 1.31996 15.91 1.32996 22 11.98" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M22 12.01C15.91 22.67 8.09 22.66 2 12.01" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             <path
                                 d="M22 2 L2 22"
                                 strokeWidth="1.5"
@@ -99,7 +121,7 @@ const Login = () => {
                 <button
                     type="submit"
                     onClick={(e) => {
-                        e.preventDefault();
+                        handleLogin(e);
                     }}
                     className={`w-full ${theme === "light" ? " bg-i" : "bg-v"} rounded-lg h-12 font-bold text-lg text-main cursor-pointer active:scale-95 transition-all duration-200 ease-in-out flex items-center justify-center`}>
                     Login

@@ -2,8 +2,12 @@ import React, { useContext } from 'react'
 import { ThemeContext } from '../context/ThemeContext';
 import { Link, Outlet } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion'; // CHANGE: Imported AnimatePresence
+import { useLocation } from 'react-router-dom';
 
 const Layout = () => {
+    const location = useLocation();
+    const isLoginPage = location.pathname === '/login';
+
     const { theme, toggleTheme } = useContext(ThemeContext);
     
     return (
@@ -18,17 +22,18 @@ const Layout = () => {
                             }
                         </button>
 
-                        <Link to={"/login"} className={`px-4 py-2 rounded-full
+                        
+
+                        <Link to={isLoginPage ? "signup":"login"} className={`px-4 py-2 rounded-full
                                         text-xs sm:text-sm md:text-base lg:text-base font-bold
                                         smxx ${theme === "dark" ? "bg-vv text-main" : "bg-main text-ii"} 
                                         cursor-pointer outline-none`}>
-                            Login
+                            {isLoginPage ?  "Sign Up": "Login" }
                         </Link>
                     </div>
                 </header>
             </div>
             
-            {/* CHANGE: Wrapped Outlet with AnimatePresence for smooth transitions */}
             <AnimatePresence mode="wait">
                 <Outlet />
             </AnimatePresence>
