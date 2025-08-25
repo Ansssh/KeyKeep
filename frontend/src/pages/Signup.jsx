@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
-import { UserContext } from '../context/userContext';
 import { motion } from 'framer-motion';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,7 +7,6 @@ import axios from 'axios';
 
 const Signup = () => {
     const { theme } = useContext(ThemeContext);
-    const { user, login } = useContext(UserContext);
     const Navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({
@@ -47,10 +45,8 @@ const Signup = () => {
             user_name: userName,
             pass_word: password
         }).then((res) => {
-            console.log(res);
             localStorage.setItem('token', res.data.token);
             console.log("Successfully Signed Up!");
-            login(res.data.user);
             Navigate('/home');
         }).catch((err) => {
             console.error("Duck You! No Signup for you!", err);

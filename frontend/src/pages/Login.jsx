@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
-import { UserContext } from '../context/userContext';
 import { motion } from 'framer-motion'; // CHANGE: Imported motion
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +15,6 @@ const Login = () => {
     const isPasswordFloating = isPasswordFocused || passwordValue;
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-    const { login } = useContext(UserContext); 
 
     async function handleLogin(e) {
         e.preventDefault();
@@ -27,7 +25,6 @@ const Login = () => {
             console.log(res);
             localStorage.setItem('token', res.data.token);
             console.log("Successfully Logged In!");
-            login(res.data.user);
             Navigate('/home');
         }).catch((err) => {
             console.error("Login failed!", err);

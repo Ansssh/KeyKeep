@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
-import { UserProvider } from './context/userContext';
 
 import Layout from './pages/Layout';
 import Home from './pages/Home';
@@ -15,7 +14,6 @@ function App() {
     return (
         <>
             <ThemeProvider>
-                <UserProvider>
                     <div className='flex flex-col h-screen'>
                         <BrowserRouter>
                             <div className='flex flex-1'>
@@ -30,7 +28,6 @@ function App() {
                             </div>
                         </BrowserRouter>
                     </div>
-                </UserProvider>
             </ThemeProvider>
         </>
     )
